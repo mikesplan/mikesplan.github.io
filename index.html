@@ -42,9 +42,11 @@
 		<button class="remove" @click.prevent="removeArticle(block)">delete</button>
 		<span class="date">{{ block.date }}</span>
 		<span class="task">{{ block.task }}</span>
-		<span class="task">{{ block.starttime }}</span>
-		<span class="task">{{ block.finishtime }}</span>
-		<span class="task">{{ block.work }}</span>
+		<div class="time">
+			<span class="task">{{ block.starttime }}</span>
+			<span class="task">{{ block.finishtime }}</span>
+			<span class="task">{{ block.work }}</span>
+		</div>
 		<span class="task">{{ block.comment }}</span>
 		<!-- <input type="text" class="task" v-model="block.task"> -->
 		<!-- <button @click.prevent="changeArticle(text)">set</button> -->
