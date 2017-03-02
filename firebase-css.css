@@ -9,7 +9,8 @@
 ul {
 	    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 li {
@@ -18,7 +19,7 @@ li {
         max-width: 20vw;
     margin: 2vw 1vw;
     background: #fcfcfc;
-    padding: 5px 15px 10px;
+    padding: 25px 40px 20px;
     position: relative;
         word-wrap: break-word;
 }
@@ -74,6 +75,10 @@ h1 {
     font-size: 12px;
     display: block;
     width: 100%;
+}
+
+.time span {
+    display: inline-block;
 }
 
 form {
