@@ -30,14 +30,56 @@
 	  	<input type="text" v-model="data.type" placeholder="type" value="">
 		<button @click.prevent="addArticle">add</button>
  	  </form>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Firebase</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<!-- Vue -->
+	  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+	  <!-- Firebase -->
+	  <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+	  <!-- VueFire -->
+	  <script src="https://unpkg.com/vuefire@1.3.0"></script>
+
+
+	  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic-ext" rel="stylesheet">
+
+	  <link href="./firebase-css.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="demo">
+  <ul>
+  	<li style="padding: 0;">
+  		
+	  <form action="">
+	  	<input type="text" v-model="data.title" placeholder="Project name" value="">
+	  	<input type="text" v-model="data.task" placeholder="task" value="">
+	  	<input type="text" v-model="data.starttime" placeholder="start task" value="">
+	  	<input type="text" v-model="data.finishtime" placeholder="finish task" value="">
+	  	<input type="text" v-model="data.work" placeholder="work time" value="">
+	  	<input type="text" v-model="data.comment" placeholder="comments" value="">
+	  	<input type="hidden" v-model="data.redminfill">
+		<button @click.prevent="addArticle">add</button>
+ 	  </form>
 
   	</li>
-    <li v-for="text in texts">
-		<h1>{{ text.title }}</h1>
-		<button class="remove" @click.prevent="removeArticle(text)">delete</button>
-		<span class="date">{{ text.date }}</span>
-		<input type="text" class="task" v-model="text.type">
-		<button @click.prevent="changeArticle(text)">set</button>
+    <li v-for="block in blocks">
+		<h1>{{ block.title }}</h1>
+		<button class="remove" @click.prevent="removeArticle(block)">delete</button>
+		<span class="date">{{ block.date }}</span>
+		<span class="task">{{ block.task }}</span>
+		<span class="task">{{ block.starttime }}</span>
+		<span class="task">{{ block.finishtime }}</span>
+		<span class="task">{{ block.work }}</span>
+		<span class="task">{{ block.comment }}</span>
+		<!-- <input type="text" class="task" v-model="block.task"> -->
+		<!-- <button @click.prevent="changeArticle(text)">set</button> -->
     </li>
 
   </ul>
@@ -73,11 +115,54 @@
 	var vm = new Vue({
 	  el: '#demo',
 	  firebase: {
-	  	texts: textRef.orderByChild('date')
+	  	blocks: textRef.orderByChild('starttime')
 	  },
 	  data: {
 	  	data: {
+	  		date: setDate(),
+
 	  		title: '',
+	  		task: '',
+	  		starttime: '',
+	  		finishtime: '',
+	  		work: '',
+	  		comment: '',
+	  		redminfill: false
+	  	}
+	  },
+	  methods: {
+		  	setDate: function() {
+				var date = new Date();
+				return date.getDay() + '/' + date.getMonth() + '/' + date.getYear();
+			},
+		  	alerttest: function() {
+		  		alert('wow');
+		  	},
+		  	addArticle: function() {
+	  			textRef.push(this.data, function() {
+	  				console.log('push completed')
+	  			});
+	  			// textRef.ref('articles').set(data)
+	  			// 	.then(function(response) {
+		  		// 		console.log('synch complete: ' + response);
+	  			// 	})
+	  			// 	.catch(function(error) {
+	  			// 		console.log('synch failed: ' + error);
+	  			// });
+	  		},
+	  		changeArticle: function(text) {
+	  		  textRef.child(text['.key']).push()
+	  		},
+	    	removeArticle: function (text) {
+		      textRef.child(text['.key']).remove()
+			}
+		}
+	})
+
+</script>
+
+</body>
+</html>
 	  		type: '',
 	  		date: setDate()
 	  	}
