@@ -77,8 +77,18 @@ h1 {
     width: 100%;
 }
 
+.time {
+        margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 .time span {
-    display: inline-block;
+    display: inline;
+    font-size: 18px;
+}
+
+.time span:nth-child(4) {
+    margin-left: 40px;
 }
 
 form {
