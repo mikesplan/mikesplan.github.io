@@ -4,6 +4,13 @@
     padding: 0;
     margin: 0;
     font-family: 'Roboto';
+
+    transition: all .3s ease;
+}
+
+div#demo {
+    width: 1440px;
+    margin: 0 auto;
 }
 
 ul {
@@ -14,16 +21,24 @@ ul {
 }
 
 li {
-	    display: block;
-        width: 18vw;
-        max-width: 20vw;
-    margin: 2vw 1vw;
-    background: #fcfcfc;
-    padding: 25px 40px 20px;
+	display: block;
+    width: 264px;
+    margin: 12px;
+    background: #fff;
+    padding: 0 0 20px;
     position: relative;
-        word-wrap: break-word;
+    word-wrap: break-word;
+    box-shadow: 0 15px 15px rgba(77,105,133,.08);
 }
 
+li:hover {
+    box-shadow: 0 25px 25px rgba(77,105,133,.16);
+    transform: translateY(-15px);
+}
+
+span {
+    margin: 5px 25px 5px 25px;
+}
 
 button.remove {
     -webkit-appearance: none;
@@ -51,13 +66,21 @@ button.remove:after {
     transform: rotate(45deg);
 }
 
-h1 {
-	margin: 0 0 0 0;
-    padding: 0 30px 0 0;
+.block-header {
+    width: 100%;
+    height: 60px;
+    background-color: #ffe3e3;
+    padding-top: 10px;
+}
+
+.title {
     font-size: 20px;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 1;
     word-wrap: break-word;
+    text-transform: lowercase;
+    line-height: 1;
+    color: #434653;
 }
 
 .body {
@@ -65,34 +88,69 @@ h1 {
 }
 
 .task {
-    margin: 10px 0 0;
-    padding: 0;
     display: block;
     font-size: 14px;
+    font-weight: 400;
+    color: #434653;
+        margin-top: 10px;
+}
+
+.comment-header {
+    display: block;
+    font-size: 13px;
+    color: #909ba6;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.comment {
+    display: block;
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .date {
     font-size: 12px;
+    font-weight: 400;
     display: block;
     width: 100%;
+    color: #000;
+    line-height: 1;
 }
 
 .time {
-        margin-top: 10px;
-    margin-bottom: 30px;
+        margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 25px;
 }
 
 .time span {
     display: inline;
-    font-size: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
 }
 
-.time span:nth-child(4) {
-    margin-left: 40px;
+.result {
+        font-size: 24px;
+    color: #434653;
+    font-weight: 400;
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 40px;
+    top: 0;
+    text-align: right;
+    margin: 10px 20px 0 0;
 }
 
 form {
-	    width: 100%;
+    width: 260px;
     height: 100%;
     margin: 0 auto;
     background-color: #e8e8e8;
