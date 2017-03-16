@@ -22,10 +22,7 @@
 <body>
 
 <div id="demo">
-  <ul>
-  	<li style="padding: 0;">
-  		
-	  <form action="">
+	<form action="">
 	  	<input type="text" v-model="data.title" placeholder="Project name" value="">
 	  	<input type="text" v-model="data.task" placeholder="task" value="">
 	  	<input type="text" v-model="data.starttime" placeholder="start task" value="">
@@ -34,21 +31,24 @@
 	  	<input type="text" v-model="data.comment" placeholder="comments" value="">
 	  	<input type="hidden" v-model="data.redminfill">
 		<button @click.prevent="addArticle">add</button>
- 	  </form>
+	</form>
 
-  	</li>
+  <ul>
     <li v-for="block in blocks">
-		<h1>{{ block.title }}</h1>
-		<button class="remove" @click.prevent="removeArticle(block)">delete</button>
-		<span class="date">{{ block.date }}</span>
+    	<div class="block-header">
+			<span class="title">{{ block.title }}</span>
+			<span class="result">{{ block.work }}</span>
+			<!-- <button class="remove" @click.prevent="removeArticle(block)">delete</button> -->
+			<span class="date">{{ block.date }}</span>    		
+    	</div>
+		<span class="task">{{ block.task }}</span>
 		<div class="time">
 			<span>{{ block.starttime }}</span>
 			<span> - </span>
 			<span>{{ block.finishtime }}</span>
-			<span>{{ block.work }}</span>
 		</div>
-		<span class="task">{{ block.task }}</span>
-		<span class="task">{{ block.comment }}</span>
+		<span class="comment-header">Comments</span>
+		<span class="comment">{{ block.comment }}</span>
 		<!-- <input type="text" class="task" v-model="block.task"> -->
 		<!-- <button @click.prevent="changeArticle(text)">set</button> -->
     </li>
@@ -86,7 +86,7 @@
 	var vm = new Vue({
 	  el: '#demo',
 	  firebase: {
-	  	blocks: textRef.orderByKey()
+	  	blocks: textRef.orderByChild('title')
 	  },
 	  data: {
 	  	data: {
