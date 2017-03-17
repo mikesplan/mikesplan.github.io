@@ -1,17 +1,74 @@
 *, body {
-	    box-sizing: border-box;
-    width: 100%;
+    box-sizing: border-box;
+    /*width: 100%;*/
     padding: 0;
     margin: 0;
     font-family: 'Roboto';
 
-    transition: all .3s ease;
+    transition: all 250ms cubic-bezier(.02, .01, .47, 1);;
 }
 
-div#demo {
-    width: 1440px;
-    margin: 0 auto;
+
+@media screen and (min-width: 1440px) {
+    div#demo {
+        width: 1440px;
+        margin: 0 auto;
+    }
+    li {
+        width: 264px;
+    }
+    span {
+        margin: 5px 25px;
+    }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+    div#demo {
+        width: 732px;
+        margin:0 auto;
+    }
+    li {
+        width: 220px;
+    }
+    span {
+        margin: 5px 25px;
+    }
+}
+
+@media screen and (min-width: 425px) and (max-width: 767px) {
+    div#demo {
+        width: 424px;
+        margin: 0 auto;
+    }
+    li {
+        width: 200px;
+        margin: 6px !important;
+    }
+    .title {
+        font-size: 16px !important;
+    }
+    .time {
+        margin-left: 15px !important;
+    }
+    span {
+        margin: 5px 15px;
+    }
+}
+
+@media screen and (max-width: 424px) {
+    div#demo {
+        width: 320px;
+        margin: 0 auto;
+    }
+    li {
+        width: 320px;
+        margin: 12px 0 !important;
+    }
+    span {
+        margin: 5px 25px;
+    }
+}
+
 
 ul {
 	    width: 100%;
@@ -22,13 +79,14 @@ ul {
 
 li {
 	display: block;
-    width: 264px;
+    /*width: 264px;*/
     margin: 12px;
     background: #fff;
     padding: 0 0 20px;
     position: relative;
     word-wrap: break-word;
     box-shadow: 0 15px 15px rgba(77,105,133,.08);
+    cursor: pointer;
 }
 
 li:hover {
@@ -36,8 +94,17 @@ li:hover {
     transform: translateY(-15px);
 }
 
-span {
-    margin: 5px 25px 5px 25px;
+li:hover > .block-header {
+    background-color: #ffb4b4;
+}
+
+.li-check {
+    box-shadow: 0 25px 25px rgba(77,105,133,.16);
+    transform: translateY(-15px);
+}
+
+.li-check > .block-header {
+    background-color: #ffb4b4;
 }
 
 button.remove {
@@ -117,13 +184,13 @@ button.remove:after {
     font-size: 12px;
     font-weight: 400;
     display: block;
-    width: 100%;
+    /*width: 100%;*/
     color: #000;
     line-height: 1;
 }
 
 .time {
-        margin-top: 30px;
+    margin-top: 30px;
     margin-bottom: 10px;
     margin-left: 25px;
 }

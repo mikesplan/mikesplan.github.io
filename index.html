@@ -18,6 +18,9 @@
 
 	  <link href="./firebase-css.css" rel="stylesheet">
 
+
+
+
 </head>
 <body>
 
@@ -34,7 +37,7 @@
 	</form>
 
   <ul>
-    <li v-for="block in blocks">
+    <li v-for="block in blocks" onclick="this.classList.toggle('li-check');">
     	<div class="block-header">
 			<span class="title">{{ block.title }}</span>
 			<span class="result">{{ block.work }}</span>
@@ -57,7 +60,6 @@
 
 
 
-	<!-- <span v-on:click.prevent="alerttest">alert</span> -->
 
 
 
@@ -129,6 +131,26 @@
 			}
 		}
 	})
+
+</script>
+
+<script>
+	// function checklist() {
+	// 	console.log('fff');
+	// 	var list = document.getElementsByTagName("li");
+
+	// 	function blockHighlight() {
+	// 		this.classList.toggle("li-check");
+	// 		console.log('good');
+	// 	}
+
+	// 	for (var i = 0; i < list.length; i++) {
+	// 		list[i].onclick = blockHighlight;
+	// 	}			
+	// }
+	// document.addEventListener('onclick', checklist);
+
+	
 
 </script>
 
