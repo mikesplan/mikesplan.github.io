@@ -104,7 +104,12 @@ li:hover > .block-header {
 }
 
 .li-check > .block-header {
-    background-color: #ffb4b4;
+    background-color: #c76f6f;
+}
+
+.li-check > .block-header .result {
+    color: #fff;
+    font-weight: 500;
 }
 
 button.remove {
