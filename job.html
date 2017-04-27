@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>W0rkP1an</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<!-- Vue -->
+	  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+	  <!-- Firebase -->
+	  <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+	  <!-- VueFire -->
+	  <script src="https://unpkg.com/vuefire@1.3.0"></script>
+
+
+	  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic-ext" rel="stylesheet">
+
+	  <link href="./firebase-css.css" rel="stylesheet">
+
+
+
+
+</head>
+<body>
+
+<div id="demo">
+	<form action="">
+	  	<input type="text" v-model="data.title" placeholder="Project name" value="" id="title">
+	  	<input type="text" v-model="data.task" placeholder="Task" value="" id="task"><!-- <label for="task">Task</label> -->
+	  	<input type="text" v-model="data.starttime" placeholder="start task" value="" id="starttime">
+	  	<input type="text" v-model="data.finishtime" placeholder="finish task" value="" id="finishtime">
+	  	<input type="text" v-model="data.work" placeholder="work time" value="" id="worktime">
+	  	<input type="text" v-model="data.comment" placeholder="comments" value="" id="comments">
+	  	<input type="hidden" v-model="data.redminfill" id="redmin">
+		<button @click.prevent="addArticle">
+			<svg version="1.1" id="add-btn" width="20px" height="22px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 22" enable-background="new 0 0 20 22" xml:space="preserve">
+			<path fill="#8BA9C7" d="M12.8,0H7.3v8.2H0v5.2h7.3V22h5.5v-8.6H20V8.2h-7.2V0z"/>
+			</svg>
+		</button>
+	</form>
+
+  <ul>
+    <li v-for="block in blocks" onclick="this.classList.toggle('li-check');">
+    	<div class="block-header">
+			<span class="title">{{ block.title }}</span>
+			<span class="result">{{ block.work }}</span>
+			<!-- <button class="remove" @click.prevent="removeArticle(block)">delete</button> -->
+			<span class="date">{{ block.date }}</span>    		
+    	</div>
+		<span class="task">{{ block.task }}</span>
+		<div class="time">
+			<span>{{ block.starttime }}</span>
+			<span> - </span>
+			<span>{{ block.finishtime }}</span>
+		</div>
+		<span class="comment-header">Comments</span>
+		<span class="comment">{{ block.comment }}</span>
+		<!-- <input type="text" class="task" v-model="block.task"> -->
+		<!-- <button @click.prevent="changeArticle(text)">set</button> -->
+    </li>
+
+  </ul>
+
+
+
+
+
+
+</div>
+
+<script>
+
+	// Setup Firebase
+	var config = {
+	  apiKey: "AIzaSyAkYTxdNYfUT7jprKYsh-Dvp-yk33QNHZg",
+	    authDomain: "todo-4b76d.firebaseapp.com",
+	    databaseURL: "https://todo-4b76d.firebaseio.com",
+	    storageBucket: "todo-4b76d.appspot.com"
+	}
+
+	// setup time
+	var setDate = function() {
+		var date = new Date();
+		return date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+	}
+
+	firebase.initializeApp(config)
+
+	var textRef = firebase.database().ref('articles')
+
+	var vm = new Vue({
+	  el: '#demo',
+	  firebase: {
+	  	blocks: textRef.orderByChild('title')
+	  },
+	  data: {
+	  	data: {
+	  		date: setDate(),
+
+	  		title: '',
+	  		task: '',
+	  		starttime: '',
+	  		finishtime: '',
+	  		work: '',
+	  		comment: '',
+	  		redminfill: false
+	  	}
+	  },
+	  methods: {
+		  	setDate: function() {
+				var date = new Date();
+				return date.getDay() + '/' + date.getMonth() + '/' + date.getYear();
+			},
+		  	alerttest: function() {
+		  		alert('wow');
+		  	},
+		  	addArticle: function() {
+	  			textRef.push(this.data, function() {
+	  				console.log('push completed')
+	  			});
+	  			// textRef.ref('articles').set(data)
+	  			// 	.then(function(response) {
+		  		// 		console.log('synch complete: ' + response);
+	  			// 	})
+	  			// 	.catch(function(error) {
+	  			// 		console.log('synch failed: ' + error);
+	  			// });
+	  		},
+	  		changeArticle: function(text) {
+	  		  textRef.child(text['.key']).push()
+	  		},
+	    	removeArticle: function (text) {
+		      textRef.child(text['.key']).remove()
+			}
+		}
+	})
+
+</script>
+	
+
+</script>
+
+</body>
+</html>
